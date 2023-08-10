@@ -125,12 +125,163 @@ while i < 10:
 9번째 반복입니다
 
 
+# 반복문 # break
+i = 0
 
+while True:
+    print("{}번째 반복문입니다.".format(i))
+    i = i+1
+    
+    input_text = input(">종료하시겠습니까>(y/n): ")
+    if input_text in ["y", "Y"]:
+        print("반복을 종료합니다.")
+        break
 
+>>
+0번째 반복문입니다.
+>종료하시겠습니까>(y/n): ㅜ
+1번째 반복문입니다.
+>종료하시겠습니까>(y/n): ㅜ
+2번째 반복문입니다.
+>종료하시겠습니까>(y/n): y
+반복을 종료합니다.
 
+# continue
 
+numbers = [5,15,6,20,7,25]
 
+for number in numbers:
+    if number < 10:    # number가 10보다 작으면 다음반복으로 넘어감
+        continue
+        
+    print(number)
 
+>>
+15
+20
+25
+
+# 반복문 reversed() # 리스트 뒤집기
+
+numbers = [1,2,3,4,5,6]
+
+for i in reversed(numbers):
+    print("첫 번째 반복문: {}".format(i))
+for i in reversed(numbers):
+    print("두 번째 반복문: {}".format(i))
+>>
+첫 번째 반복문: 6
+첫 번째 반복문: 5
+첫 번째 반복문: 4
+첫 번째 반복문: 3
+첫 번째 반복문: 2
+첫 번째 반복문: 1
+두 번째 반복문: 6
+두 번째 반복문: 5
+두 번째 반복문: 4
+두 번째 반복문: 3
+두 번째 반복문: 2
+두 번째 반복문: 1
+
+# enumerate() # 현재 인덱스가 몇번째 인덱스인지 확인하기
+
+eaxmple_list = ["요소A", "요소B", "요소C"]
+
+print("# 단순 출력")
+print("example_list")
+print()
+
+print("#enumerate() 함수 적용 출력")
+print(enumerate(example_list))
+print()
+
+print("# 반복문과 조합하기")
+for i, value in enumerate(example_list):
+    print("{}번째 요소는 {}입니다.".format(i, value))
+
+>>
+# 단순 출력
+example_list
+
+#enumerate() 함수 적용 출력
+<enumerate object at 0x0000022A172B26B0>
+
+# 반복문과 조합하기
+0번째 요소는 요소A입니다.
+1번째 요소는 요소B입니다.
+2번째 요소는 요소C입니다.
+
+# 예제
+exam = ["a", "b","c"]
+print(list(enumerate(exam)))
+>> [(0, 'a'), (1, 'b'), (2, 'c')]
+
+# 예제, array 안에서 for문 사용하기
+array = [i*i for i in range(0,20,2)]
+print(array)
+>> [0, 4, 16, 36, 64, 100, 144, 196, 256, 324]
+
+# 예제, array 밖에서 for문 사용하기
+array = []
+for i in range(0,20,2):
+    array.append(i**2)
+print(array)
+>> [0, 4, 16, 36, 64, 100, 144, 196, 256, 324]
+
+# 예제, array 안 for, if
+array = ["사과", "자두", "수박", "딸기", "오렌지", "초코"]
+output = [fruit for fruit in array if fruit != "초코"]
+
+print(output)
+>> ['사과', '자두', '수박', '딸기', '오렌지']
+
+# 중첩 반복문으로 피라미드 만들기
+output = ""
+
+for i in range(1,10):
+    for j in range(0,i):
+        output += "*"
+    output +="\n"
+    
+print(output)
+>>
+*
+**
+***
+****
+*****
+******
+*******
+********
+*********
+
+# 피라미드 2
+output = ""
+
+for i in range(1,15):
+    for j in range(14, i, -1):
+        output += " "
+    for k in range(0, 2*i-1):
+        output += "*"
+    output+= "\n"
+
+print(output)
+
+>>
+             *
+            ***
+           *****
+          *******
+         *********
+        ***********
+       *************
+      ***************
+     *****************
+    *******************
+   *********************
+  ***********************
+ *************************
+***************************
 
 
 
