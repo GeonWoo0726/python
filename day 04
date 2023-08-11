@@ -1,0 +1,252 @@
+     # 함수
+    # 예제
+   def print_n_times(n, value):
+    for i in range(n):
+        print(value)
+        
+print_n_times(5, "안녕하세요")
+
+>>
+안녕하세요
+안녕하세요
+안녕하세요
+안녕하세요
+안녕하세요
+
+    # 예제 # 가변 매개변수가 기본 매개변수보다 앞에 와야한다
+      
+def print_n_times(*values, n=2):
+    
+    for i in range(n):
+        for value in values:
+            print(value)
+            
+        print()
+        
+print_n_times("안녕하세여", "즐거운?", "파이썬 프로그래밍")
+>>
+안녕하세여
+즐거운?
+파이썬 프로그래밍
+
+안녕하세여
+즐거운?
+파이썬 프로그래밍      
+
+    # 예제 ## 위에서 매개변수를 지정해놨지만 아래에서 지정한 값으로 호출
+
+def print_n_times(*values, n=2):
+    for i in range(n):
+        for value in values:
+        
+            print(value)
+    print()
+print_n_times("안녕하세요", "즐거운", "파이썬 프로그래밍", n=3)
+
+>>
+안녕하세요
+즐거운
+파이썬 프로그래밍
+안녕하세요
+즐거운
+파이썬 프로그래밍
+안녕하세요
+즐거운
+파이썬 프로그래밍
+
+    # return # 함수가 끝나는 위치를 표현
+
+    # 예제
+
+def mul(*values):
+    
+    output = 1            # 초기값 설정
+    
+    for value in values:
+        output *= value
+    
+    return output          # 여기서 마무리
+    
+print(mul(5,7,9,10))
+>> 3150
+
+    # facatorial !!!
+
+def factorial(n):
+    
+    output = 1
+    
+    for i in range(1, n+1):
+        output *= i
+    return output
+
+print("3!:", factorial(3))
+>> 3!: 6
+
+    # fibonacci 피보나치 수열
+
+def fibonacci(n):
+    if n == 1:
+        return 1
+    if n == 2:
+        return 1
+    else:
+        return fibonacci(n - 1) + fibonacci(n - 2)
+print("fibonacci(20):", fibonacci(20))
+>> fibonacci(20): 6765
+
+    # 메모. dictionary 를 활용하여 계산속도를 향상시킴
+      
+dictionary = {
+    1: 1,
+    2: 1
+}
+
+def fibonacci(n):
+    if n in dictionary:
+        return dictionary[n]
+    else:
+        output = fibonacci(n-1) + fibonacci(n - 2)
+        dictionary[n] = output
+        return output
+    
+print("fibonacci(10):", fibonacci(10))
+
+>> fibonacci(10): 55
+
+    # 튜플 , 리스트와 유사한 자료형, 한번 결정된 요소는 바꿀수 없음
+    # 예제
+tuple_test = (10, 20, 30)
+
+tuple_test[0]
+>> 10
+
+    # 예제 2 , 괄호가 없어도 튜플의 값을 출력할 수 있음
+  
+tuple_test = 10, 20,30, 40
+print("# 괄호가 없는 튜플의 값과 자료형 출력")
+print("tuple_test:", tuple_test)
+print("type(tuple_test:)", type(tuple_test))
+print()
+
+a,b,c = 10,20,30
+print("# 괄호가 없는 튜플을 활용한 할당")
+print("a:", a)
+print("b:", b)
+print("c:", c)
+      
+>>
+# 괄호가 없는 튜플의 값과 자료형 출력
+tuple_test: (10, 20, 30, 40)
+type(tuple_test:) <class 'tuple'>
+
+# 괄호가 없는 튜플을 활용한 할당
+a: 10
+b: 20
+c: 30
+
+
+    # 예제 3, 값을 변환하는건 불가능하지만 값을 교환하는것은 가능하다.
+a,b = 10,20
+
+print("# 교환 전 값")
+print("a:", a)
+print("b:", b)
+print()
+
+a, b = b,a
+
+print("# 교환 후 값")
+print("a:", a)
+print("b:", b)
+print()
+
+>>
+# 교환 전 값
+a: 10
+b: 20
+
+# 교환 후 값
+a: 20
+b: 10
+
+
+# filter(), map() | 함수를 매개변수로 사용하는 표준함수
+
+def power(item):
+    return item * item
+def under_3(item):
+    return item < 3
+
+list_input_a = [1,2,3,4,5]
+
+output_a = map(power, list_input_a)
+print("# map() 함수의 실행 결과")
+print("map(power, list_input_a):", output_a)
+print("map(power, list_input_a):", list(output_a))
+print()
+
+output_b = filter(under_3, list_input_a)
+print("# filter() 함수의 실행 결과")
+print("fliter(under_3, list_input_a):", output_b)
+print("fliter(under_3, list_input_a):", list(output_b))
+
+>>
+# map() 함수의 실행 결과
+map(power, list_input_a): <map object at 0x000001CF27168670>
+map(power, list_input_a): [1, 4, 9, 16, 25]
+
+# filter() 함수의 실행 결과
+fliter(under_3, list_input_a): <filter object at 0x000001CF27169B40>
+fliter(under_3, list_input_a): [1, 2]
+
+    # lambda 람다
+def under_3(item):
+    return item < 3
+under_3(2)
+>> True
+
+    # 예제
+under_3 = lambda x : x < 3
+
+under_3(2)
+>> True
+
+  # 예제 , 파일 생성후 닫기
+file = open("basic.txt", "w")
+
+file.write("Hello Python Programing...!")
+
+file.close()
+
+  # 예제, with를 이용하면 자동적으로 닫는기능이 있음
+with open("basic2.txt", "w") as file:
+    file.write("Hello")
+
+  
+
+    # 예제 read(), 파일안에 쓰여진 텍스트를 읽어드림
+with open("basic.txt", "r") as file:
+    contents = file.read()
+print(contents)                          # basic.txt 파일 안 글 읽기
+>> Hello Python Programing...!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
